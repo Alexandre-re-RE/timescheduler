@@ -22,14 +22,8 @@ class Project{
     private $real_start_date;
     private $real_end_date;
 
-    public function __construct($id, $name, $description, $start_date, $end_date, $real_start_date, $real_end_date){
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->start_date = $start_date;
-        $this->end_date = $end_date;
-        $this->real_start_date = $real_start_date;
-        $this->real_end_date = $real_end_date;
+    public function __construct(){
+        
     }
     /**
      * Get the value of id
