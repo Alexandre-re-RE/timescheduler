@@ -33,15 +33,6 @@ class Task
 
     public function __construct()
     {
-        $this->id = $id;
-        $this->description = $description;
-        $this->priority = $priority;
-        $this->start_date = $start_date;
-        $this->end_date = $end_date;
-        $this->real_start_date = $real_start_date;
-        $this->real_end_date = $real_end_date;
-        $this->create = $create;
-        $this->updated_at = $updated_at;
     }
 
     /**
