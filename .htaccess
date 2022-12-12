@@ -1,0 +1,41 @@
+#clients
+Redirect /clients /clients/index.php
+Redirect /clients /clients/add.php
+Redirect /clients /clients/show.php
+Redirect /clients /clients/edit.php
+Redirect /clients /clients/delete.php
+
+#projects
+Redirect /projects /projects/index.php
+Redirect /projects /projects/add.php
+Redirect /projects /projects/show.php
+Redirect /projects /projects/edit.php
+Redirect /projects /projects/delete.php
+
+#roles
+Redirect /roles /roles/index.php
+Redirect /roles /roles/add.php
+Redirect /roles /roles/show.php
+Redirect /roles /roles/edit.php
+Redirect /roles /roles/delete.php
+
+#status
+Redirect /status /status/index.php
+Redirect /status /status/add.php
+Redirect /status /status/show.php
+Redirect /status /status/edit.php
+Redirect /status /status/delete.php
+
+#tasks
+Redirect /tasks /tasks/index.php
+Redirect /tasks /tasks/add.php
+Redirect /tasks /tasks/show.php
+Redirect /tasks /tasks/edit.php
+Redirect /tasks /tasks/delete.php
+
+#users
+Redirect /users /users/index.php
+Redirect /users /users/add.php
+Redirect /users /users/show.php
+Redirect /users /users/edit.php
+Redirect /users /users/delete.php
