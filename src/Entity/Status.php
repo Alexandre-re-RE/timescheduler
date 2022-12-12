@@ -1,5 +1,16 @@
 <?php
 
+namespace App\Entity;
+
+/**
+ * Status class
+ * 
+ * @property int $id
+ * @property int $code
+ * @property string $name
+ * @property date $create_at
+ * @property date $update_at
+ */
 class Status
 {
     private $id;
