@@ -20,13 +20,8 @@ class Status
     private $updated_at;
 
 
-    public function __construct($id, $code, $name, $created_at, $updated_at)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->id = $code;
-        $this->id = $name;
-        $this->id = $created_at;
-        $this->updated_at = $updated_at;
     }
     /**
      * Get the value of id
