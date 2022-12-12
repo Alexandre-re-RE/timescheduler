@@ -8,10 +8,10 @@ namespace App\Entity;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property date $start_date
- * @property date $end_date
- * @property date $real_start_date
- * @property date $real_end_date
+ * @property string $start_date
+ * @property string $end_date
+ * @property string $real_start_date
+ * @property string $real_end_date
  */
 class Project{
     private $id;
@@ -175,4 +175,3 @@ class Project{
 }
 
 
-?>
