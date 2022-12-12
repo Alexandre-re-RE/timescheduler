@@ -3,34 +3,31 @@
 namespace App\Entity;
 
 /**
- * Status class
+ * Role class
  * 
  * @property int $id
- * @property int $code
+ * @property string $code
  * @property string $name
- * @property date $create_at
+ * @property date $created_at
  * @property date $update_at
  */
-class Status
-{
+class Role{
     private $id;
     private $code;
     private $name;
-    private $create_at;
+    private $created_at;
     private $update_at;
 
-
-    public function __construct($id, $code, $name, $create_at, $update_at)
-    {
+    public function __construct($id, $code, $name, $created_at, $update_at){
         $this->id = $id;
-        $this->id = $code;
-        $this->id = $name;
-        $this->id = $create_at;
+        $this->code = $code;
+        $this->name = $name;
+        $this->created_at = $created_at;
         $this->update_at = $update_at;
     }
     /**
      * Get the value of id
-     */
+     */ 
     public function getId()
     {
         return $this->id;
@@ -40,7 +37,7 @@ class Status
      * Set the value of id
      *
      * @return  self
-     */
+     */ 
     public function setId($id)
     {
         $this->id = $id;
@@ -50,7 +47,7 @@ class Status
 
     /**
      * Get the value of code
-     */
+     */ 
     public function getCode()
     {
         return $this->code;
@@ -60,7 +57,7 @@ class Status
      * Set the value of code
      *
      * @return  self
-     */
+     */ 
     public function setCode($code)
     {
         $this->code = $code;
@@ -70,7 +67,7 @@ class Status
 
     /**
      * Get the value of name
-     */
+     */ 
     public function getName()
     {
         return $this->name;
@@ -80,7 +77,7 @@ class Status
      * Set the value of name
      *
      * @return  self
-     */
+     */ 
     public function setName($name)
     {
         $this->name = $name;
@@ -88,30 +85,32 @@ class Status
         return $this;
     }
 
+   
+
     /**
-     * Get the value of create_at
-     */
-    public function getCreateAt()
+     * Get the value of created_at
+     */ 
+    public function getCreated_at()
     {
-        return $this->create_at;
+        return $this->created_at;
     }
 
     /**
-     * Set the value of create_at
+     * Set the value of created_at
      *
      * @return  self
-     */
-    public function setCreateAt($create_at)
+     */ 
+    public function setCreated_at($created_at)
     {
-        $this->create_at = $create_at;
+        $this->created_at = $created_at;
 
         return $this;
     }
 
     /**
      * Get the value of update_at
-     */
-    public function getUpdateAt()
+     */ 
+    public function getUpdate_at()
     {
         return $this->update_at;
     }
@@ -120,11 +119,14 @@ class Status
      * Set the value of update_at
      *
      * @return  self
-     */
-    public function setUpdateAt($update_at)
+     */ 
+    public function setUpdate_at($update_at)
     {
         $this->update_at = $update_at;
 
         return $this;
     }
 }
+
+
+?>

@@ -1,5 +1,21 @@
 <?php
 
+namespace App\Entity;
+
+/**
+ * Task class
+ * 
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property int $priority
+ * @property date $start_date
+ * @property date $end_date
+ * @property date $real_start_date
+ * @property date $real_end_date
+ * @property date $create
+ * @property date $update_at
+ */
 class Task
 {
     private $id;
