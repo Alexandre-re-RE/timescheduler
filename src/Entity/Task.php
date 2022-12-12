@@ -31,7 +31,7 @@ class Task
 
 
 
-    public function __construct($id, $description, $priority, $start_date, $end_date, $real_start_date, $real_end_date, $create, $updated_at)
+    public function __construct()
     {
         $this->id = $id;
         $this->description = $description;
