@@ -9,12 +9,12 @@ namespace App\Entity;
  * @property string $title
  * @property string $description
  * @property int $priority
- * @property date $start_date
- * @property date $end_date
- * @property date $real_start_date
- * @property date $real_end_date
- * @property date $create
- * @property date $update_at
+ * @property string $start_date
+ * @property string $end_date
+ * @property string $real_start_date
+ * @property string $real_end_date
+ * @property string $create
+ * @property string $updated_at
  */
 class Task
 {
@@ -27,11 +27,11 @@ class Task
     private $real_start_date;
     private $real_end_date;
     private $create;
-    private $update_at;
+    private $updated_at;
 
 
 
-    public function __construct($id, $description, $priority, $start_date, $end_date, $real_start_date, $real_end_date, $create, $update_at)
+    public function __construct($id, $description, $priority, $start_date, $end_date, $real_start_date, $real_end_date, $create, $updated_at)
     {
         $this->id = $id;
         $this->description = $description;
@@ -41,7 +41,7 @@ class Task
         $this->real_start_date = $real_start_date;
         $this->real_end_date = $real_end_date;
         $this->create = $create;
-        $this->update_at = $update_at;
+        $this->updated_at = $updated_at;
     }
 
     /**
@@ -165,11 +165,11 @@ class Task
     }
 
     /**
-     * Get the value of update_at
+     * Get the value of updated_at
      */
-    public function getUpdateAt()
+    public function getUpdatedAt()
     {
-        return $this->update_at;
+        return $this->updated_at;
     }
 
     /**
@@ -177,9 +177,9 @@ class Task
      *
      * @return  self
      */
-    public function setUpdateAt($update_at)
+    public function setUpdateAt($updated_at)
     {
-        $this->update_at = $update_at;
+        $this->updated_at = $updated_at;
 
         return $this;
     }

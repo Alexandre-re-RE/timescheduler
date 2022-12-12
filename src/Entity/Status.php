@@ -8,25 +8,25 @@ namespace App\Entity;
  * @property int $id
  * @property int $code
  * @property string $name
- * @property date $create_at
- * @property date $update_at
+ * @property string $created_at
+ * @property string $updated_at
  */
 class Status
 {
     private $id;
     private $code;
     private $name;
-    private $create_at;
-    private $update_at;
+    private $created_at;
+    private $updated_at;
 
 
-    public function __construct($id, $code, $name, $create_at, $update_at)
+    public function __construct($id, $code, $name, $created_at, $updated_at)
     {
         $this->id = $id;
         $this->id = $code;
         $this->id = $name;
-        $this->id = $create_at;
-        $this->update_at = $update_at;
+        $this->id = $created_at;
+        $this->updated_at = $updated_at;
     }
     /**
      * Get the value of id
@@ -89,41 +89,41 @@ class Status
     }
 
     /**
-     * Get the value of create_at
+     * Get the value of created_at
      */
-    public function getCreateAt()
+    public function getcreatedAt()
     {
-        return $this->create_at;
+        return $this->created_at;
     }
 
     /**
-     * Set the value of create_at
+     * Set the value of created_at
      *
      * @return  self
      */
-    public function setCreateAt($create_at)
+    public function setcreatedAt($created_at)
     {
-        $this->create_at = $create_at;
+        $this->created_at = $created_at;
 
         return $this;
     }
 
     /**
-     * Get the value of update_at
+     * Get the value of updated_at
      */
     public function getUpdateAt()
     {
-        return $this->update_at;
+        return $this->updated_at;
     }
 
     /**
-     * Set the value of update_at
+     * Set the value of updated_at
      *
      * @return  self
      */
-    public function setUpdateAt($update_at)
+    public function setUpdateAt($updated_at)
     {
-        $this->update_at = $update_at;
+        $this->updated_at = $updated_at;
 
         return $this;
     }
