@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
+
 /**
  * User class
  * 
@@ -11,8 +13,8 @@ namespace App\Entity;
  * @property string $email
  * @property string $username
  * @property string $password
- * @property string $created_at
- * @property string $updated_at
+ * @property DateTime $created_at
+ * @property DateTime $updated_at
  */
 class User
 {
@@ -24,6 +26,12 @@ class User
     private $password;
     private $created_at;
     private $updated_at;
+
+    public function __construct()
+    {
+        $this->created_at = new DateTime(is_string($this->created_at) ? $this->created_at : '');
+        $this->updated_at = new DateTime(is_string($this->updated_at) ? $this->updated_at : '');
+    }
 
     /**
      * Get the value of id
@@ -172,7 +180,7 @@ class User
     /**
      * Get the value of created_at
      *
-     * @return string
+     * @return DateTime
      */
     public function getCreatedAt()
     {
@@ -196,7 +204,7 @@ class User
     /**
      * Get the value of updated_at
      *
-     * @return string
+     * @return DateTime
      */
     public function getUpdatedAt()
     {
@@ -215,5 +223,23 @@ class User
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    /**
+     * To array function
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'username' => $this->username,
+            'email' => $this->email,
+            'password' => $this->password,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+        ];
     }
 }
