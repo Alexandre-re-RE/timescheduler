@@ -31,7 +31,7 @@ class Database
         if(!$this->db instanceof PDO) {
             throw new ErrorException('unable to connect to db');
         }
-        return $this->getDb();
+        return $this->db;
     }
 
 }
