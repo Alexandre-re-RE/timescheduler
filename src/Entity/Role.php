@@ -8,22 +8,22 @@ namespace App\Entity;
  * @property int $id
  * @property string $code
  * @property string $name
- * @property date $created_at
- * @property date $update_at
+ * @property string $created_at
+ * @property string $updated_at
  */
 class Role{
     private $id;
     private $code;
     private $name;
     private $created_at;
-    private $update_at;
+    private $updated_at;
 
-    public function __construct($id, $code, $name, $created_at, $update_at){
+    public function __construct($id, $code, $name, $created_at, $updated_at){
         $this->id = $id;
         $this->code = $code;
         $this->name = $name;
         $this->created_at = $created_at;
-        $this->update_at = $update_at;
+        $this->updated_at = $updated_at;
     }
     /**
      * Get the value of id
@@ -110,9 +110,9 @@ class Role{
     /**
      * Get the value of update_at
      */ 
-    public function getUpdate_at()
+    public function getUpdated_at()
     {
-        return $this->update_at;
+        return $this->updated_at;
     }
 
     /**
@@ -120,13 +120,11 @@ class Role{
      *
      * @return  self
      */ 
-    public function setUpdate_at($update_at)
+    public function setUpdated_at($updated_at)
     {
-        $this->update_at = $update_at;
+        $this->updated_at = $updated_at;
 
         return $this;
     }
 }
 
-
-?>
