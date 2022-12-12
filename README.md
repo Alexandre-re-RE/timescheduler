@@ -1,7 +1,5 @@
 # Time Scheduler
 
-- Revenue was off the chart.
-
 ### Fonctionalité
 
 - Créer une tâche.
