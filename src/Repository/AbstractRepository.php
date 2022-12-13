@@ -7,7 +7,7 @@ use PDO;
 
 /**
  * Abstract repository
- * 
+ *
  * @property \PDO $db
  */
 abstract class AbstractRepository
