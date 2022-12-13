@@ -1,43 +1,26 @@
 <?php
 
-class ClientRepository {
-    private PDO|null $db = null;
+namespace App\Repository;
 
-    protected ?string $table = null;
+use App\Entity\Client;
+use App\Repository\AbstractRepository;
 
-    public function __construct()
+/**
+ * Client repository
+ * 
+ * @method \App\Entity\Client[]|null findAll()
+ * @method \App\Entity\Client|bool find($id)
+ */
+class ClientRepository extends AbstractRepository
+{
+
+    public function getEntityClass()
     {
-        $this->db = (new Database("cakephp", "cakephp", "cakephp"))->getDb();
+        return Client::class;
     }
 
-    abstract public function getEntityClassName();
-
-    public function all()
+    public function getTable()
     {
-        $listObject = $this->db->query("SELECT * FROM $this->table")->fetchAll(PDO::FETCH_CLASS, $this->getEntityClassName());
-        return $listObject;
-    }
-
-    public function getById($id)
-    {
-        $query = $this->db->query("SELECT * FROM $this->table WHERE id = $id LIMIT 1");
-        $query->setFetchMode(PDO::FETCH_CLASS, $this->getEntityClassName());
-        $object = $query->fetch();
-        return $object;
-    }
-
-    public function save($entity)
-    {
-//        $query = "INSERT INTO $this->table ()";
-//        foreach (get_class_vars($this->getEntityClassName()) as $tableColName) {
-//            $query .= $tableColName . ' '
-//        }
-    }
-
-    public function delete($id)
-    {
-        $object = $this->getById($id);
-        $query = $this->db->query("DELETE FROM $this->table WHERE id = $id");
-        return $query->execute();
+        return 'clients';
     }
 }
