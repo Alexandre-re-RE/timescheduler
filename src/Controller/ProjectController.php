@@ -2,26 +2,41 @@
 
 namespace App\Controller;
 
+use App\Repository\ProjectRepository;
+
 class ProjectController {
 
     public function index()
     {
-        require 'src/Templates/Client/index.php';
+        $projectRepository = new ProjectRepository();
+        $statusRepository = new ProjectRepository();
+        $clientRepository = new ProjectRepository();
+
+        $projects = $projectRepository->findAll();
+
+        require 'src/Templates/Project/index.php';
     }
     public function view($id)
     {
-        require 'src/Templates/Client/view.php';
+        require 'src/Templates/Project/view.php';
     }
     public function create()
     {
-        require 'src/Templates/Client/create.php';
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if($method === "GET") {
+            require 'src/Templates/Project/create.php';
+            exit;
+        }
+
+        var_dump('je doit pas attrir ici');
     }
     public function update($id)
     {
-        require 'src/Templates/Client/update.php';
+        require 'src/Templates/Project/update.php';
     }
     public function delete($id)
     {
-        require 'src/Templates/Client/delete.php';
+        require 'src/Templates/Project/delete.php';
     }
 }
