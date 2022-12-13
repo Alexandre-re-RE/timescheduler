@@ -19,7 +19,7 @@ function redirectRoute($method, $requestParts, $controller) {
         case 'GET':
             switch($requestParts[1]) {
                 case 'add':
-                    (new $controller())->create(null);
+                    (new $controller())->create();
                     break;
                 case 'update':
                     (new $controller())->update($requestParts[2]);

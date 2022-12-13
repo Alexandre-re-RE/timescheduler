@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use App\Repository\ClientRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\StatusRepository;
@@ -22,6 +23,10 @@ class ProjectController {
     }
     public function view($id)
     {
+        $project = (new ProjectRepository())->find($id);
+        $client = (new ClientRepository())->find($project->getClientId());
+        $status = (new StatusRepository())->find($project->getStatusId());
+
         require 'src/Templates/Project/view.php';
     }
     public function create()
@@ -29,18 +34,41 @@ class ProjectController {
         $method = $_SERVER['REQUEST_METHOD'];
 
         if($method === "GET") {
+            $clients = (new ClientRepository())->findAll();
             require 'src/Templates/Project/create.php';
             exit;
         }
 
-        var_dump('je doit pas attrir ici');
+        foreach ($_POST as $key => $value) {
+            ${$key} = $value;
+        }
+
+        $project = (new Project())
+            ->setName($name)
+            ->setDescription($description)
+            ->setStartDate(date_create_from_format('YYYY-MM-DD', $start_date))
+            ->setEndDate(date_create_from_format('YYYY-MM-DD', $end_date))
+            ->setClientId((new ClientRepository())->find($client_id))
+        ;
+        //save le project
     }
     public function update($id)
     {
-        require 'src/Templates/Project/update.php';
+
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if($method === "GET") {
+            $clients = (new ClientRepository())->findAll();
+            $project = (new ProjectRepository())->find($id);
+            require 'src/Templates/Project/update.php';
+            exit;
+        }
+
+
     }
     public function delete($id)
     {
-        require 'src/Templates/Project/delete.php';
+        $delete = (new ProjectRepository)->delete($id);
+        header('Location: /projects');
     }
 }
