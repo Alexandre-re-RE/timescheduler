@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
+use App\Repository\ClientRepository;
 use App\Repository\ProjectRepository;
+use App\Repository\StatusRepository;
 
 class ProjectController {
 
     public function index()
     {
-        $projectRepository = new ProjectRepository();
-        $statusRepository = new ProjectRepository();
-        $clientRepository = new ProjectRepository();
+        //instaciatio des repository pour ensuite récupérer les relations
+        $statusRepository = new StatusRepository();
+        $clientRepository = new ClientRepository();
 
-        $projects = $projectRepository->findAll();
+        //récupération de la liste de projet
+        $projects = (new ProjectRepository())->findAll();
 
+        //rendu du template
         require 'src/Templates/Project/index.php';
     }
     public function view($id)

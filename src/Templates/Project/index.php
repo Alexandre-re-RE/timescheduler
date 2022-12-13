@@ -27,8 +27,8 @@ require_once('./bootstrap.php');
                 <th>date de fin</th>
                 <th>date réel de début</th>
                 <th>date réel de fin</th>
-                <th>status</th>
                 <th>client</th>
+                <th>status</th>
                 <th>actions</th>
             </tr>
             </thead>
