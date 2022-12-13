@@ -1,36 +1,60 @@
 <?php
 require_once './bootstrap.php';
 
-session_start();
+//controllers
+use App\Controller\ClientController;
+use App\Controller\ProjectController;
+use App\Controller\RoleController;
+use App\Controller\StatusController;
+use App\Controller\TaskController;
+use App\Controller\UserController;
 
-/** @var \App\Entity\User|null $user */
-$user = $_SESSION['user'] ?? null;
-?>
+//entrypoint
+$request = $_SERVER['REQUEST_URI'];
+$method = !empty($_POST['method']) ? htmlspecialchars(strtoupper($_POST['method'])) : $_SERVER['REQUEST_METHOD'];
+$requestParts = explode('/', trim($request, '/'));
 
-<!DOCTYPE html>
-<html lang="en">
+function redirectRoute($method, $idParams, $controller) {
+    switch($method) {
+        case 'GET':
+            if($idParams) {
+                (new $controller())->view($idParams);
+            } else {
+                (new $controller())->index();
+            }
+            break;
+        case 'POST':
+            (new $controller())->create();
+            break;
+        case 'DELETE':
+            (new $controller())->delete($idParams);
+            break;
+        case 'UPDATE':
+            (new $controller())->update($idParams);
+            break;
+    }
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time schedule</title>
-</head>
 
-<body>
-    <?php if (!is_null($user)) : ?>
-        <ul>
-            <li>Firstname: <?= $user->getFirstname() ?></li>
-            <li>Lastname: <?= $user->getLastname() ?></li>
-            <li>Username: <?= $user->getUsername() ?></li>
-            <li>Email: <?= $user->getEmail() ?></li>
-            <li>Password: <?= $user->getPassword() ?></li>
-            <li>Date de création: <?= $user->getCreatedAt()->format('d/m/Y H:i:s') ?></li>
-            <li>Date de modification: <?= $user->getUpdatedAt()->format('d/m/Y H:i:s') ?></li>
-        </ul>
-    <?php else : ?>
-        <p>Vous êtes pas connecté !</p>
-    <?php endif; ?>
-</body>
-
-</html>
+switch ($requestParts[0]) {
+    case 'clients':
+        redirectRoute($method, $requestParts[1], ClientController::class);
+        break;
+    case 'projects':
+        redirectRoute($method, $requestParts[1], ProjectController::class);
+        break;
+    case 'roles':
+        redirectRoute($method, $requestParts[1], RoleController::class);
+        break;
+    case 'status':
+        redirectRoute($method, $requestParts[1], StatusController::class);
+        break;
+    case 'tasks':
+        redirectRoute($method, $requestParts[1], TaskController::class);
+        break;
+    case 'users':
+        redirectRoute($method, $requestParts[1], UserController::class);
+        break;
+    default:
+        echo '404 not found';
+}
