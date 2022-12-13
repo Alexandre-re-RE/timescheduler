@@ -170,6 +170,7 @@ class Task
      */
     public function setUpdateAt($updated_at)
     {
+
         $this->updated_at = $updated_at;
 
         return $this;
