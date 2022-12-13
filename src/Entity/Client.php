@@ -4,7 +4,7 @@ namespace App\Entity;
 
 /**
  * Client class
- * 
+ *
  * @property int $id
  * @property string $name
  */
@@ -14,12 +14,13 @@ namespace App\Entity;
 
         public function __construct()
         {
-
+            parent::__construct();
+            $this->table = "clients";
         }
 
         /**
          * Get the value of id
-         */ 
+         */
         public function getId()
         {
                 return $this->id;
@@ -29,7 +30,7 @@ namespace App\Entity;
          * Set the value of id
          *
          * @return  self
-         */ 
+         */
         public function setId($id)
         {
                 $this->id = $id;
@@ -39,7 +40,7 @@ namespace App\Entity;
 
         /**
          * Get the value of name
-         */ 
+         */
         public function getName()
         {
                 return $this->name;
@@ -49,7 +50,7 @@ namespace App\Entity;
          * Set the value of name
          *
          * @return  self
-         */ 
+         */
         public function setName($name)
         {
                 $this->name = $name;
