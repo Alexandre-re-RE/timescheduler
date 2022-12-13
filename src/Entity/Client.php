@@ -6,7 +6,7 @@ use DateTime;
 
 /**
  * Client class
- * 
+ *
  * @property int $id
  * @property string $name
  * @property DateTime $created_at
