@@ -10,22 +10,31 @@ use App\Controller\TaskController;
 use App\Controller\UserController;
 
 //entrypoint
-$request = $_SERVER['REQUEST_URI'];
+$request = APP_DIR !== '/' ? str_replace(APP_DIR, '', $_SERVER['REQUEST_URI']) : $_SERVER['REQUEST_URI'];
 $method = !empty($_POST['method']) ? htmlspecialchars(strtoupper($_POST['method'])) : $_SERVER['REQUEST_METHOD'];
-$requestParts = explode('/', trim($request, '/'));
 
-function redirectRoute($method, $requestParts, $controller) {
-    switch($method) {
+$splitedRequest = explode('/', trim($request, '/'));
+
+$requestParams = [
+    'endpoint' => $splitedRequest[0] ?? '',
+    'action' => $splitedRequest[1] ?? '/',
+    'param' => $splitedRequest[2] ?? '',
+];
+
+
+function redirectRoute($method, $requestParams, $controller)
+{
+    switch ($method) {
         case 'GET':
-            switch($requestParts[1]) {
+            switch ($requestParams['action']) {
                 case 'add':
                     (new $controller())->create();
                     break;
                 case 'update':
-                    (new $controller())->update($requestParts[2]);
+                    (new $controller())->update($requestParams['param']);
                     break;
                 case 'view':
-                    (new $controller())->view($requestParts[2]);
+                    (new $controller())->view($requestParams['param']);
                     break;
                 default:
                     (new $controller())->index();
@@ -35,10 +44,10 @@ function redirectRoute($method, $requestParts, $controller) {
             (new $controller())->create();
             break;
         case 'DELETE':
-            (new $controller())->delete($requestParts[1]);
+            (new $controller())->delete($requestParams['param']);
             break;
         case 'UPDATE':
-            (new $controller())->update($requestParts[1]);
+            (new $controller())->update($requestParams['param']);
             break;
         default:
             echo '404 not found method not allowed';
@@ -46,24 +55,24 @@ function redirectRoute($method, $requestParts, $controller) {
 }
 
 
-switch ($requestParts[0]) {
+switch ($requestParams['endpoint']) {
     case 'clients':
-        redirectRoute($method, $requestParts, ClientController::class);
+        redirectRoute($method, $requestParams, ClientController::class);
         break;
     case 'projects':
-        redirectRoute($method, $requestParts, ProjectController::class);
+        redirectRoute($method, $requestParams, ProjectController::class);
         break;
     case 'roles':
-        redirectRoute($method, $requestParts, RoleController::class);
+        redirectRoute($method, $requestParams, RoleController::class);
         break;
     case 'status':
-        redirectRoute($method, $requestParts, StatusController::class);
+        redirectRoute($method, $requestParams, StatusController::class);
         break;
     case 'tasks':
-        redirectRoute($method, $requestParts, TaskController::class);
+        redirectRoute($method, $requestParams, TaskController::class);
         break;
     case 'users':
-        redirectRoute($method, $requestParts, UserController::class);
+        redirectRoute($method, $requestParams, UserController::class);
         break;
     default:
         echo '404 not found';
