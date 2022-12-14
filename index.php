@@ -13,7 +13,7 @@ use App\Controller\UserController;
 $request = $_SERVER['REQUEST_URI'];
 $method = !empty($_POST['method']) ? htmlspecialchars(strtoupper($_POST['method'])) : $_SERVER['REQUEST_METHOD'];
 $requestParts = explode('/', trim($request, '/'));
-
+var_dump($requestParts);
 function redirectRoute($method, $requestParts, $controller) {
     switch($method) {
         case 'GET':
