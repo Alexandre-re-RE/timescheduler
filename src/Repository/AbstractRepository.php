@@ -123,11 +123,15 @@ abstract class AbstractRepository
 
         $columns = $this->getColumns();
 
-        $columns = array_map(function ($column) {
+        $columnsParams = array_map(function ($column) {
             return ':' . $column;
         }, $columns);
 
-        $query = "INSERT INTO {$this->getTable()} VALUES (" . implode(', ', $columns) . ") ";
+        $columns = array_map(function ($column) {
+            return "`{$column}`";
+        }, $columns);
+
+        $query = "INSERT INTO {$this->getTable()}(" . implode(', ', $columns) . ") VALUES (" . implode(', ', $columnsParams) . ") ";
 
         $stmt = $this->db->prepare($query);
 
