@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\EntityInterface;
 use DateTime;
+use DateTimeZone;
 
 /**
  * Client class
@@ -12,9 +14,9 @@ use DateTime;
  * @property DateTime $created_at
  * @property DateTime $updated_at
  */
-class Client
+class Client implements EntityInterface
 {
-    private $id;
+    private $id = null;
     private $name;
     private $created_at;
     private $updated_at;
@@ -22,7 +24,10 @@ class Client
     public function __construct()
     {
         $this->created_at = new DateTime(is_string($this->created_at) ? $this->created_at : '');
+        $this->created_at->setTimezone(new DateTimeZone('Indian/Reunion'));
+
         $this->updated_at = new DateTime(is_string($this->updated_at) ? $this->updated_at : '');
+        $this->updated_at->setTimezone(new DateTimeZone('Indian/Reunion'));
     }
 
     /**
@@ -68,7 +73,7 @@ class Client
     /**
      * Get the value of created_at
      *
-     * @return mixed
+     * @return DateTime
      */
     public function getCreatedAt()
     {
@@ -92,7 +97,7 @@ class Client
     /**
      * Get the value of updated_at
      *
-     * @return mixed
+     * @return DateTime
      */
     public function getUpdatedAt()
     {
@@ -111,5 +116,15 @@ class Client
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
+        ];
     }
 }
