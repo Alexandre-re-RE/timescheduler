@@ -2,16 +2,21 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeZone;
+use App\Entity\EntityInterface;
+
+
 /**
  * Status class
  * 
  * @property int $id
  * @property int $code
  * @property string $name
- * @property string $created_at
- * @property string $updated_at
+ * @property DateTime $created_at
+ * @property DateTime $updated_at
  */
-class Status
+class Status implements EntityInterface
 {
     private $id;
     private $code;
@@ -22,6 +27,11 @@ class Status
 
     public function __construct()
     {
+        $this->created_at = new DateTime(is_string($this->created_at) ? $this->created_at : '');
+        $this->created_at->setTimezone(new DateTimeZone('Indian/Reunion'));
+
+        $this->updated_at = new DateTime(is_string($this->updated_at) ? $this->updated_at : '');
+        $this->updated_at->setTimezone(new DateTimeZone('Indian/Reunion'));
     }
     /**
      * Get the value of id
@@ -85,8 +95,8 @@ class Status
 
     /**
      * Get the value of created_at
-     */
-    public function getcreatedAt()
+     */ 
+    public function getCreatedAt()
     {
         return $this->created_at;
     }
@@ -95,18 +105,17 @@ class Status
      * Set the value of created_at
      *
      * @return  self
-     */
-    public function setcreatedAt($created_at)
+     */ 
+    public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
 
         return $this;
     }
-
-    /**
+   /**
      * Get the value of updated_at
-     */
-    public function getUpdateAt()
+     */ 
+    public function getUpdatedAt()
     {
         return $this->updated_at;
     }
@@ -115,11 +124,21 @@ class Status
      * Set the value of updated_at
      *
      * @return  self
-     */
-    public function setUpdateAt($updated_at)
+     */ 
+    public function setUpdatedAt($updated_at)
     {
         $this->updated_at = $updated_at;
 
         return $this;
     }
+    public function toArray(){
+        return[
+            'id' => $this->id,
+            'code' => $this->code,
+            'name' => $this->name,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+        ];
+    }
+
 }
