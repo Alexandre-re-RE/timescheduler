@@ -13,7 +13,7 @@ namespace App\Entity;
  * @property string $real_start_date
  * @property string $real_end_date
  */
-class Project{
+class Project implements EntityInterface {
     private $id;
     private $name;
     private $description;
@@ -181,9 +181,10 @@ class Project{
     /**
      * @param mixed $status_id
      */
-    public function setStatusId($status_id): void
+    public function setStatusId($status_id)
     {
         $this->status_id = $status_id;
+        return $this;
     }
 
     /**
@@ -197,9 +198,25 @@ class Project{
     /**
      * @param mixed $client_id
      */
-    public function setClientId($client_id): void
+    public function setClientId($client_id)
     {
         $this->client_id = $client_id;
+        return $this;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'start_date' => $this->getStartDate() ? $this->getStartDate()->format('Y-m-d H:i:s') : null,
+            'end_date' => $this->getEndDate() ? $this->getEndDate()->format('Y-m-d H:i:s') : null,
+            'real_start_date' => $this->getRealStartDate() ? $this->getRealStartDate()->format('Y-m-d H:i:s') : null,
+            'real_end_date' => $this->getRealEndDate() ? $this->getRealEndDate()->format('Y-m-d H:i:s') : null,
+            'status_id' => $this->getStatusId(),
+            'client_id' => $this->getClientId()
+        ];
     }
 }
 

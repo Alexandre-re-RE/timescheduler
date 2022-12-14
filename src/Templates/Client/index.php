@@ -11,7 +11,7 @@ require_once('./bootstrap.php');
     <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
             <span>Clients</span>
-            <a href="<?= APP_DIR ?>/clients/add" class="btn btn-dark">Ajouter</a>
+            <a href="<?= APP_DIR ?>clients/add" class="btn btn-dark">Ajouter</a>
         </div>
     </div>
     <div class="card-body">

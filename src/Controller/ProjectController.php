@@ -43,14 +43,27 @@ class ProjectController {
             ${$key} = $value;
         }
 
+        //TODO : caca a changer apres fait vite fait
+        $statusFind;
+        $status = (new StatusRepository())->findAll();
+        foreach ($status as $statut) {
+            if($statut->getCode() === "WAITING") {
+                $statusFind = $statut;
+            }
+        }
+
         $project = (new Project())
             ->setName($name)
             ->setDescription($description)
-            ->setStartDate(date_create_from_format('YYYY-MM-DD', $start_date))
-            ->setEndDate(date_create_from_format('YYYY-MM-DD', $end_date))
-            ->setClientId((new ClientRepository())->find($client_id))
+            ->setStartDate(new \DateTime($start_date))
+            ->setEndDate(new \DateTime($end_date))
+            ->setClientId((new ClientRepository())->find($client_id)->getId())
+            ->setStatusId($statusFind->getId())
         ;
-        //save le project
+
+        (new ProjectRepository())->save($project);
+
+        header('Location: ' . APP_DIR . 'projects');
     }
     public function update($id)
     {
@@ -64,11 +77,27 @@ class ProjectController {
             exit;
         }
 
+        $project = (new ProjectRepository())->find($id);
 
+        foreach ($_POST as $key => $value) {
+            ${$key} = $value;
+        }
+
+        $project
+            ->setName($name)
+            ->setDescription($description)
+            ->setStartDate(new \DateTime($start_date))
+            ->setEndDate(new \DateTime($end_date))
+            ->setClientId((new ClientRepository())->find($client_id)->getId())
+        ;
+
+        (new ProjectRepository())->save($project);
+
+        header('Location: ' . APP_DIR . 'projects');
     }
     public function delete($id)
     {
         $delete = (new ProjectRepository)->delete($id);
-        header('Location: /projects');
+        header('Location: ' . APP_DIR . 'projects');
     }
 }

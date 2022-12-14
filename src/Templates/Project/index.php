@@ -14,7 +14,7 @@ require_once('./bootstrap.php');
     <div class="card-header">
         <div class="d-flex align-items-center justify-content-between">
             <span>Projects</span>
-            <a href="/projects/add" class="btn btn-dark">Ajouter</a>
+            <a href="<?= APP_DIR ?>projects/add" class="btn btn-dark">Ajouter</a>
         </div>
     </div>
     <div class="card-body">
@@ -46,9 +46,9 @@ require_once('./bootstrap.php');
                     <td><?= $clientRepository->find($project->getClientId())->getName() ?></td>
                     <td><?= $statusRepository->find($project->getStatusId())->getName() ?></td>
                     <td>
-                        <a href="/projects/view/<?= $project->getId() ?>" class="text-black"><i class="fas fa-eye"></i></a>
-                        <a href="/projects/update/<?= $project->getId() ?>" class="text-black"><i class="fas fa-edit"></i></a>
-                        <form action="/projects/<?= $project->getId() ?>" method="post" style="display: inline-block;">
+                        <a href="<?= APP_DIR ?>projects/view/<?= $project->getId() ?>" class="text-black"><i class="fas fa-eye"></i></a>
+                        <a href="<?= APP_DIR ?>projects/update/<?= $project->getId() ?>" class="text-black"><i class="fas fa-edit"></i></a>
+                        <form action="<?= APP_DIR ?>projects/delete/<?= $project->getId() ?>" method="post" style="display: inline-block;">
                             <input type="hidden" name="method" value="DELETE">
                             <a href="#" onclick="if(confirm('Êtes-vous sûr de votre action ?')) {this.parentNode.submit()}" class="text-black"><i class="fas fa-trash"></i></a>
                         </form>

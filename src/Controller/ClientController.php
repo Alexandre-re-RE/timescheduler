@@ -57,7 +57,7 @@ class ClientController
                     'message' => 'Client enregistré !'
                 ];
 
-                header('Location: index.php');
+                header('Location: ' . APP_DIR . 'clients');
                 exit;
             }
         }
@@ -88,7 +88,7 @@ class ClientController
                     'message' => 'Client mis à jour !'
                 ];
 
-                header('Location: ../index.php');
+                header('Location: ' . APP_DIR . 'clients');
                 exit;
             }
         }
@@ -102,7 +102,7 @@ class ClientController
             $this->clientRepository->delete($id);
         }
 
-        header("Location: ../index.php");
+        header('Location: ' . APP_DIR . 'clients');
         exit;
     }
 }

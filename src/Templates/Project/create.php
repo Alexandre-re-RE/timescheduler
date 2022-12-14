@@ -6,7 +6,7 @@
 ?>
 
 <?php ob_start(); ?>
-<form method="post" action="/projects">
+<form method="post" action="<?= APP_DIR ?>projects">
     <input type="text" name="name" />
     <input type="text" name="description" />
     <input type="date" name="start_date" />
