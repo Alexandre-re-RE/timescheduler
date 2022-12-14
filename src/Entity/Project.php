@@ -4,7 +4,7 @@ namespace App\Entity;
 
 /**
  * Project class
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $description
@@ -22,12 +22,15 @@ class Project{
     private $real_start_date;
     private $real_end_date;
 
+    private $status_id;
+    private $client_id;
+
     public function __construct(){
-        
+
     }
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -37,7 +40,7 @@ class Project{
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -47,7 +50,7 @@ class Project{
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -57,7 +60,7 @@ class Project{
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -67,7 +70,7 @@ class Project{
 
     /**
      * Get the value of description
-     */ 
+     */
     public function getDescription()
     {
         return $this->description;
@@ -77,7 +80,7 @@ class Project{
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -85,12 +88,12 @@ class Project{
         return $this;
     }
 
-    
+
 
     /**
      * Get the value of start_date
-     */ 
-    public function getStart_date()
+     */
+    public function getStartDate()
     {
         return $this->start_date;
     }
@@ -99,8 +102,8 @@ class Project{
      * Set the value of start_date
      *
      * @return  self
-     */ 
-    public function setStart_date($start_date)
+     */
+    public function setStartDate($start_date)
     {
         $this->start_date = $start_date;
 
@@ -109,8 +112,8 @@ class Project{
 
     /**
      * Get the value of end_date
-     */ 
-    public function getEnd_date()
+     */
+    public function getEndDate()
     {
         return $this->end_date;
     }
@@ -119,8 +122,8 @@ class Project{
      * Set the value of end_date
      *
      * @return  self
-     */ 
-    public function setEnd_date($end_date)
+     */
+    public function setEndDate($end_date)
     {
         $this->end_date = $end_date;
 
@@ -129,8 +132,8 @@ class Project{
 
     /**
      * Get the value of real_start_date
-     */ 
-    public function getReal_start_date()
+     */
+    public function getRealStartDate()
     {
         return $this->real_start_date;
     }
@@ -139,8 +142,8 @@ class Project{
      * Set the value of real_start_date
      *
      * @return  self
-     */ 
-    public function setReal_start_date($real_start_date)
+     */
+    public function setRealStartSate($real_start_date)
     {
         $this->real_start_date = $real_start_date;
 
@@ -149,8 +152,8 @@ class Project{
 
     /**
      * Get the value of real_end_date
-     */ 
-    public function getReal_end_date()
+     */
+    public function getRealEndDate()
     {
         return $this->real_end_date;
     }
@@ -159,12 +162,44 @@ class Project{
      * Set the value of real_end_date
      *
      * @return  self
-     */ 
-    public function setReal_end_date($real_end_date)
+     */
+    public function setRealEndDate($real_end_date)
     {
         $this->real_end_date = $real_end_date;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusId()
+    {
+        return $this->status_id;
+    }
+
+    /**
+     * @param mixed $status_id
+     */
+    public function setStatusId($status_id): void
+    {
+        $this->status_id = $status_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientId()
+    {
+        return $this->client_id;
+    }
+
+    /**
+     * @param mixed $client_id
+     */
+    public function setClientId($client_id): void
+    {
+        $this->client_id = $client_id;
     }
 }
 
