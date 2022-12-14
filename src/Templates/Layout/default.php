@@ -186,7 +186,7 @@ require_once('./bootstrap.php');
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-5 mx-5 mt-5">
-            <div class="ml-4 d-flex flex-row justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+            <div class="ml-4 align-items-center pb-2 mb-3">
                 <?= $content ?>
             </div>
         </main>
