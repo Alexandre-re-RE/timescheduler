@@ -6,7 +6,7 @@ class UserController {
 
     public function index()
     {
-        require 'src/Templates/Client/index.php';
+        require 'src/Templates/User/index.php';
     }
     public function view($id){
 

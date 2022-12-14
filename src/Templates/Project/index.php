@@ -2,7 +2,8 @@
 require_once('./bootstrap.php');
 
 /**
- * @var \App\Entity\Project $projet
+ * @var \App\Entity\Project $project
+ * @var \App\Entity\Project[] $projects
  * @var $statusRepository \App\Repository\StatusRepository
  * @var $clientRepository \App\Repository\ClientRepository
  */
