@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\EntityInterface;
+use DateTime;
+use DateTimeZone;
+
 /**
  * Task class
  * 
@@ -9,16 +13,16 @@ namespace App\Entity;
  * @property string $title
  * @property string $description
  * @property int $priority
- * @property string $start_date
- * @property string $end_date
- * @property string $real_start_date
- * @property string $real_end_date
- * @property string $create
- * @property string $updated_at
+ * @property DateTime $start_date
+ * @property DateTime $end_date
+ * @property DateTime $real_start_date
+ * @property DateTime $real_end_date
+ * @property DateTime $create
+ * @property Datetime $updated_at
  */
-class Task
+class Task  implements EntityInterface
 {
-    private $id;
+    private $id = null;
     private $title;
     private $description;
     private $priority;
@@ -26,13 +30,42 @@ class Task
     private $end_date;
     private $real_start_date;
     private $real_end_date;
-    private $create;
+    private $created_at;
     private $updated_at;
 
 
-
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'priority' => $this->priority,
+            'start_date' => $this->start_date->format('Y-m-d H:i:s'),
+            'end_date' => $this->end_date->format('Y-m-d H:i:s'),
+            'real_start_date' => $this->real_start_date->format('Y-m-d H:i:s'),
+            'real_end_date' => $this->end_date->format('Y-m-d H:i:s'),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
+        ];
+    }
     public function __construct()
     {
+        $this->start_date = new DateTime(is_string($this->start_date) ? $this->start_date : '');
+        $this->start_date->setTimezone(new DateTimeZone('Indian/Reunion'));
+
+        $this->end_date = new DateTime(is_string($this->end_date) ? $this->end_date : '');
+        $this->end_date->setTimezone(new DateTimeZone('Indian/Reunion'));
+
+        $this->real_start_date = new DateTime(is_string($this->real_start_date) ? $this->real_start_date : '');
+        $this->real_start_date->setTimezone(new DateTimeZone('Indian/Reunion'));
+
+        $this->created_at = new DateTime(is_string($this->created_at) ? $this->created_at : '');
+        $this->created_at->setTimezone(new DateTimeZone('Indian/Reunion'));
+
+
+        $this->updated_at = new DateTime(is_string($this->updated_at) ? $this->updated_at : '');
+        $this->updated_at->setTimezone(new DateTimeZone('Indian/Reunion'));
     }
 
     /**
@@ -136,11 +169,11 @@ class Task
     }
 
     /**
-     * Get the value of create
+     * Get the value of created
      */
     public function getCreate()
     {
-        return $this->create;
+        return $this->created_at;
     }
 
     /**
@@ -148,9 +181,9 @@ class Task
      *
      * @return  self
      */
-    public function setCreate($create)
+    public function setCreate($created_at)
     {
-        $this->create = $create;
+        $this->created_at = $created_at;
 
         return $this;
     }
